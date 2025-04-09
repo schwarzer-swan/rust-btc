@@ -1,0 +1,27 @@
+#+title: A simple Bitcoin implementation in Rust
+A simple implementation of Bitcoin in Rust based on the book [[https://braiins.com/books/building-bitcoin-in-rust][Building bitcoin in Rust]]
+
+** Getting started
+Note, this is work in progress, and the instruction will change as I study to book and experiment
+
+This is a nix flake project, however, if you have all the required software installed, you are not obligated to use nix.
+For that reason, the nix folder is a /hidden/ folder.
+
+#+begin_src shell
+nix develop ./.nix
+cargo build --all
+#+end_src
+
+There are a number of generators in the [[./src/lib/src/bin][generators]]
+ to experiment with
+ + blocks
+ + keys
+ + transactions
+
+#+begin_src shell
+cargo run --bin key_gen acme-keys
+cargo run --bin tx_gen acme-tx
+cargo run --bin tx_print acme-tx
+cargo run --bin block_gen acme-block
+cargo run --bin block_print acme-block
+#+end_src

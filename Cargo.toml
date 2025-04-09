@@ -1,0 +1,9 @@
+[workspace]
+resolver = "2"
+members = [
+        "src/lib",
+        "src/miner",
+        "src/node",
+        "src/wallet",
+        # "src/hello_world",
+]
