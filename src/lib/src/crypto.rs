@@ -26,7 +26,7 @@ impl PrivateKey {
     }
 }
 impl Saveable for PrivateKey {
-    fn load<I: Read>(reader: I) -> IoResult<(Self)> {
+    fn load<I: Read>(reader: I) -> IoResult<Self> {
         ciborium::de::from_reader(reader)
             .map_err(|_| IoError::new(IoErrorKind::InvalidData, "Failed to deserialize PrivateKey"))
     }

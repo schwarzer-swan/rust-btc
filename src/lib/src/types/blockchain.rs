@@ -1,14 +1,14 @@
 use crate::error::{BtcError, Result};
 use crate::sha256::Hash;
 use crate::types::block::Block;
-use crate::types::transaction::{Transaction, TransactionInput, TransactionOutput};
+use crate::types::transaction::{Transaction, TransactionOutput};
 use crate::util::{MerkleRoot, Saveable};
 use crate::U256;
 use bigdecimal::BigDecimal;
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
-use std::io::{Error as IoError, ErrorKind as IoErrorKind, Read, Result as IoResult, Write};
+use std::io::{Error as IoError, ErrorKind as IoErrorKind};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Blockchain {
@@ -23,7 +23,7 @@ pub struct Blockchain {
 }
 
 impl Saveable for Blockchain {
-    fn load<I: std::io::Read>(reader: I) -> std::io::Result<(Self)> {
+    fn load<I: std::io::Read>(reader: I) -> std::io::Result<Self> {
         ciborium::de::from_reader(reader)
             .map_err(|_| IoError::new(IoErrorKind::InvalidData, "Failed to deserialias blockchain"))
     }
